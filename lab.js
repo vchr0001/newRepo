@@ -20,6 +20,7 @@ app.get("/", (req,res)=>{
 
 app.get("/addNewTask", (req,res)=>{
     res.sendFile(__dirname + "/views/newtask.html");
+   
 })
 
 app.get('/listAllTask', (req,res)=>{
@@ -31,11 +32,12 @@ app.get('/listAllTask', (req,res)=>{
 app.post('/newTask', (req,res)=>{
     console.log(req.body);
     db.push(req.body);
-    res.send("Push Success");
     console.log(db);
+    res.render("listAllTask.html", {
+        task:db
+    })
    
 })
-
 
 
 app.listen(8080, ()=>{
